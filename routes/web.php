@@ -21,8 +21,10 @@ Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
 
-// Route::get('/test/show',['as' => 'data','uses' => 'MahasiswaController@show']);
-// Route::post('/test/store','MahasiswaController@store');
-// Route::get('/test/','MahasiswaController@create');
-
 Route::resource('mahasiswa','MahasiswaController');
+
+Route::get('export', 'MahasiswaController@export')->name('export');
+
+Route::get('importExportView', 'MahasiswaController@importExportView');
+
+// Route::post('import', 'MyController@import')->name('import');

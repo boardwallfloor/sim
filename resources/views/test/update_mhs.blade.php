@@ -3,7 +3,7 @@
 @section('title', 'Test Update Page')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Test Input Page</h1>
+    <h1 class="m-0 text-dark">Test Update Page</h1>
 @stop
 
 @section('content')

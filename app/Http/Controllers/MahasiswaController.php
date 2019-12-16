@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Mahasiswa;
 use Illuminate\Http\Request;
+use App\Exports\MahasiswaExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class MahasiswaController extends Controller
@@ -49,24 +51,32 @@ class MahasiswaController extends Controller
   }
 
   public function edit(Mahasiswa $mahasiswa){
-  return view('test/update_mhs',compact('mahasiswa'));
+  	return view('test/update_mhs',compact('mahasiswa'));
 	}
 
   public function update(Request $request, Mahasiswa $mahasiswa){
-        // $request->validate([
-        //     'name' => 'required',
-        //     'detail' => 'required',
-        // ]);
-        $mahasiswa->update($request->all());
-        return redirect()->route('mahasiswa.index') ->with('success','Product updated successfully');
+    // $request->validate([
+    //     'name' => 'required',
+    //     'detail' => 'required',
+    // ]);
+    $mahasiswa->update($request->all());
+    return redirect()->route('mahasiswa.index') ->with('success','Product updated successfully');
   }
   public function destroy(Mahasiswa $mahasiswa){
-        // $mhs = Mahasiswa::find($id);
-        // dd($mhs);
-        // dd($mahasiswa);
-        $mahasiswa->delete();
-        
-        return redirect()->route('mahasiswa.index')
-                        ->with('success','Product deleted successfully');
+    // $mhs = Mahasiswa::find($id);
+    // dd($mhs);
+    // dd($mahasiswa);
+    $mahasiswa->delete();
+    
+    return redirect()->route('mahasiswa.index')
+                    ->with('success','Product deleted successfully');
+    }
+
+
+    public function importExportView(){
+    	return view('test/export_mhs');
+    }
+    public function export() {
+      return Excel::download(new MahasiswaExport, 'Mahasiswa.xlsx');
     }
 }
