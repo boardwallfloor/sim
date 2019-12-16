@@ -48,13 +48,17 @@ class MahasiswaController extends Controller
   	return view('test/create_mhs');
   }
 
-  public function update(Request $request, Product $product){
-        $request->validate([
-            'name' => 'required',
-            'detail' => 'required',
-        ]);
-        $product->update($request->all());
-        return redirect()->route('products.index') ->with('success','Product updated successfully');
+  public function edit(Mahasiswa $mahasiswa){
+  return view('test/update_mhs',compact('mahasiswa'));
+	}
+
+  public function update(Request $request, Mahasiswa $mahasiswa){
+        // $request->validate([
+        //     'name' => 'required',
+        //     'detail' => 'required',
+        // ]);
+        $mahasiswa->update($request->all());
+        return redirect()->route('mahasiswa.index') ->with('success','Product updated successfully');
   }
   public function destroy(Mahasiswa $mahasiswa){
         // $mhs = Mahasiswa::find($id);

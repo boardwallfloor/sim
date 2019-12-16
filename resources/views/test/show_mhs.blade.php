@@ -38,7 +38,7 @@
     		<td>{{$mahasiswa->bank}}</td>
             <td> 
                 <form action="{{route ('mahasiswa.destroy', $mahasiswa->id)}}" method="POST">
-                    <!-- <a class="btn btn-primary" href="">Edit</a> -->
+                    <a class="btn btn-primary" href="{{route('mahasiswa.edit',$mahasiswa->id)}}">Edit</a>
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
